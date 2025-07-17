@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compre frutas frescas no Depósito Lima com entrega em Umuarama direto pelo WhatsApp." />
+  <title>Depósito Lima - Frutas Frescas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .fruit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-green-50">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Logo Depósito Lima" class="h-10 w-auto mr-2" loading="lazy" />
+        <h1 class="text-xl font-bold text-green-700">Depósito <span class="text-yellow-500">Lima</span></h1>
+      </div>
+      <nav class="hidden md:flex gap-6 items-center">
+        <a href="#fruits" class="text-green-700 hover:text-yellow-500">Frutas</a>
+        <a href="#how" class="text-green-700 hover:text-yellow-500">Como Funciona</a>
+        <a href="#contact" class="text-green-700 hover:text-yellow-500">Contato</a>
+        <a href="https://www.instagram.com/dep_ositolima/" target="_blank" class="text-green-700 hover:text-yellow-500 text-xl">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="bg-gradient-to-r from-green-600 to-yellow-400 py-12 text-center text-white">
+    <h2 class="text-3xl md:text-5xl font-bold">Peça frutas frescas pelo WhatsApp</h2>
+    <p class="text-lg mt-2">Entrega de segunda a sábado em Umuarama</p>
+    <a href="#fruits" class="mt-6 inline-block bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition">Ver Frutas</a>
+  </section>
+
+  <section id="how" class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center text-green-700 mb-10">Como Funciona</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <i class="fas fa-shopping-basket text-green-700 text-3xl mb-2"></i>
+          <h3 class="text-xl font-semibold">1. Escolha as frutas</h3>
+          <p class="text-gray-600">Informe a quantidade e selecione</p>
+        </div>
+        <div>
+          <i class="fas fa-list text-green-700 text-3xl mb-2"></i>
+          <h3 class="text-xl font-semibold">2. Revise seu pedido</h3>
+          <p class="text-gray-600">Confira os itens adicionados ao carrinho</p>
+        </div>
+        <div>
+          <i class="fab fa-whatsapp text-green-700 text-3xl mb-2"></i>
+          <h3 class="text-xl font-semibold">3. Envie no WhatsApp</h3>
+          <p class="text-gray-600">Finalize o pedido com um clique</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fruits" class="py-12 bg-green-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center text-green-700 mb-10">Frutas Disponíveis</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="fruit-list"></div>
+      <div class="mt-12 max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-4 text-green-700 flex items-center gap-2">
+          <i class="fas fa-shopping-cart text-green-600"></i>
+          Carrinho de Compras
+        </h3>
+        <ul id="cart-list" class="mb-4 text-green-900 text-sm space-y-2"></ul>
+        <button onclick="sendOrder()" id="order-button" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-full shadow-lg w-full" disabled>
+          Enviar Pedido pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <a href="#" id="floating-button" onclick="sendOrder()" class="hidden fixed bottom-4 right-4 bg-green-500 text-white px-5 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-green-600">
+    <i class="fab fa-whatsapp text-xl"></i>
+    <span class="hidden md:inline">Fazer pedido</span>
+  </a>
+
+  <footer id="contact" class="bg-green-700 text-white py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-2">Entrega</h3>
+        <p>Segunda a Sábado</p>
+        <p>7:00 às 18:00</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-2">Pagamento</h3>
+        <p>Pix, Dinheiro e Cartão</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-2">Instagram</h3>
+        <a href="https://www.instagram.com/dep_ositolima/" target="_blank" class="hover:text-yellow-300">@dep_ositolima</a>
+      </div>
+    </div>
+    <div class="text-center text-sm mt-6 border-t border-green-600 pt-4">
+            <p class="text-green-200">
+            Desenvolvido por 
+            <a href="https://www.instagram.com/isabella.code/" target="_blank" class="underline hover:text-yellow-300">@isabella.code</a>
+            </p>
+
+    </div>
+  </footer>
+
+  <script>
+    const frutas = [
+      { nome: 'Banana', preco: 4.99, imagem: 'banana.png' },
+      { nome: 'Maçã', preco: 5.99, imagem: 'macas.jpg' },
+      { nome: 'Laranja', preco: 3.99, imagem: 'laranja.png' },
+      { nome: 'Uva', preco: 7.49, imagem: 'uvas.jpg' },
+    ];
+
+    const carrinho = [];
+
+    function renderFrutas() {
+      const lista = document.getElementById('fruit-list');
+      frutas.forEach((fruta, index) => {
+        const card = document.createElement('div');
+        card.className = 'fruit-card bg-white rounded-lg p-4 shadow-md text-center';
+        card.innerHTML = `
+          <img src="${fruta.imagem}" alt="${fruta.nome}" class="h-28 w-full object-contain mb-4 mx-auto rounded" loading="lazy">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">${fruta.nome}</h3>
+          <p class="text-green-600 font-medium mb-3">R$ ${fruta.preco.toFixed(2)}/kg</p>
+          <input id="qty-${index}" type="number" min="0.1" step="0.1" value="0.5" class="w-full border rounded px-2 py-1 mb-2" />
+          <button onclick="adicionar(${index})" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition">Adicionar ao Carrinho</button>
+        `;
+        lista.appendChild(card);
+      });
+    }
+
+    function adicionar(index) {
+      const fruta = frutas[index];
+      const input = document.getElementById(`qty-${index}`);
+      const quantidade = parseFloat(input.value);
+      if (isNaN(quantidade) || quantidade <= 0) return;
+      const existente = carrinho.find(f => f.nome === fruta.nome);
+      if (existente) {
+        existente.quantidade += quantidade;
+      } else {
+        carrinho.push({ ...fruta, quantidade });
+      }
+      document.getElementById('order-button').disabled = false;
+      document.getElementById('floating-button').classList.remove('hidden');
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById('cart-list');
+      lista.innerHTML = '';
+      carrinho.forEach(f => {
+        const subtotal = f.preco * f.quantidade;
+        const item = document.createElement('li');
+        item.innerHTML = `<span class="flex justify-between"><span>${f.nome} (${f.quantidade.toFixed(2)} kg)</span><span>R$ ${subtotal.toFixed(2)}</span></span>`;
+        lista.appendChild(item);
+      });
+    }
+
+    function sendOrder() {
+      if (carrinho.length === 0) return;
+      let mensagem = 'Olá! Gostaria de pedir:\n';
+      let total = 0;
+      carrinho.forEach(f => {
+        const subtotal = f.preco * f.quantidade;
+        mensagem += `- ${f.nome}: ${f.quantidade.toFixed(2)} kg (R$ ${subtotal.toFixed(2)})\n`;
+        total += subtotal;
+      });
+      mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
+      const url = `https://wa.me/5544999999999?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+
+    renderFrutas();
+  </script>
+</body>
+</html>
