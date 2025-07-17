@@ -110,7 +110,6 @@
             Desenvolvido por 
             <a href="https://www.instagram.com/isabella.code/" target="_blank" class="underline hover:text-yellow-300">@isabella.code</a>
             </p>
-
     </div>
   </footer>
 
@@ -133,17 +132,37 @@
           <img src="${fruta.imagem}" alt="${fruta.nome}" class="h-28 w-full object-contain mb-4 mx-auto rounded" loading="lazy">
           <h3 class="text-lg font-semibold text-gray-800 mb-2">${fruta.nome}</h3>
           <p class="text-green-600 font-medium mb-3">R$ ${fruta.preco.toFixed(2)}/kg</p>
-          <input id="qty-${index}" type="number" min="0.1" step="0.1" value="0.5" class="w-full border rounded px-2 py-1 mb-2" />
+          <div class="flex items-center justify-center gap-2 mb-3">
+            <button onclick="decrement(${index})" class="bg-red-500 text-white px-2 py-1 rounded-full text-lg font-bold">–</button>
+            <span id="qty-${index}" class="w-10 text-center text-green-800 font-semibold">0.5</span>
+            <button onclick="increment(${index})" class="bg-green-500 text-white px-2 py-1 rounded-full text-lg font-bold">+</button>
+          </div>
           <button onclick="adicionar(${index})" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition">Adicionar ao Carrinho</button>
         `;
         lista.appendChild(card);
       });
     }
 
+    function increment(index) {
+      const qtySpan = document.getElementById(`qty-${index}`);
+      let value = parseFloat(qtySpan.innerText);
+      if (isNaN(value)) value = 0.5;
+      value += 0.1;
+      qtySpan.innerText = value.toFixed(1);
+    }
+
+    function decrement(index) {
+      const qtySpan = document.getElementById(`qty-${index}`);
+      let value = parseFloat(qtySpan.innerText);
+      if (isNaN(value)) value = 0.5;
+      value = Math.max(0.1, value - 0.1);
+      qtySpan.innerText = value.toFixed(1);
+    }
+
     function adicionar(index) {
       const fruta = frutas[index];
-      const input = document.getElementById(`qty-${index}`);
-      const quantidade = parseFloat(input.value);
+      const qtySpan = document.getElementById(`qty-${index}`);
+      const quantidade = parseFloat(qtySpan.innerText);
       if (isNaN(quantidade) || quantidade <= 0) return;
       const existente = carrinho.find(f => f.nome === fruta.nome);
       if (existente) {
